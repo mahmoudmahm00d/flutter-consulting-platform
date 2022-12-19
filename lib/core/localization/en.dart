@@ -4,5 +4,14 @@ Map<String, String> english = {
   'PressMe': 'Press Me',
   'Valid': 'Valid',
   'Invalid': 'Invalid',
-  'Phone': 'Phone number'
+  'Phone': 'Phone number',
+  'NewToApp':'NewToApp?',
+  'Password':'Password',
+  'Email':'Email',
+  'Login':'Login',
+  'Register':'Register',
+  'FullName':'Full Name',
+  'ConfirmPassword':'Confirm Password',
+  'User':'User',
+  'Specialist':'Specialist',
 };

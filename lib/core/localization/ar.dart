@@ -5,4 +5,13 @@ Map<String, String> arabic = {
   'Valid': 'صالح',
   'Invalid': 'غير صالح',
   'Phone': 'رقم الهاتف',
+  'NewToApp':'جديد في التطبيق',
+  'Password':'كلمة المرور',
+  'Email':'البريد الإلكتروني',
+  'Login':'تسجيل الدخول',
+  'Register':'تسجيل',
+  'FullName':'الاسم الكامل',
+  'ConfirmPassword':'تأكيد كلمة المرور',
+  'User':'مستخدم',
+  'Specialist':'مختص',
 };

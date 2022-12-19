@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_consulting_platform/screens/categories/categories_screen.dart';
+import 'package:flutter_consulting_platform/screens/login/login_screen.dart';
+import 'package:flutter_consulting_platform/screens/register/register_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -15,7 +18,8 @@ void main() {
 
   runApp(
     const MyApp(
-      home: MyHomePage(title: Constants.applicationTitle),
+      home: LoginScreen(),
+
     ),
   );
 }

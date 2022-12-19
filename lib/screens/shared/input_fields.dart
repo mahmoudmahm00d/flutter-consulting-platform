@@ -138,7 +138,8 @@ class InputField extends StatelessWidget {
             decoration: InputDecoration(
               prefixIcon: icon,
               filled: true,
-              fillColor: ApplicationColors.light,
+              iconColor: ApplicationColors.primaryButtonColor,
+              fillColor: Colors.white,
               hintText: hintText,
               hintStyle: TextStyle(
                 fontFamily: ApplicationFonts.defaultFamily,

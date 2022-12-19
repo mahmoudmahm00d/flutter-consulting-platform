@@ -30,7 +30,7 @@ flutter:
   assets:
     - asset/
     - asset/images/
-    # - asset/images/pngs
+    - asset/images/pngs/
     # - asset/images/svgs
 
   fonts:
