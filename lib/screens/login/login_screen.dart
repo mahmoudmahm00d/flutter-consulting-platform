@@ -1,88 +1,111 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_consulting_platform/screens/categories/categories_screen.dart';
-import 'package:flutter_consulting_platform/screens/register/register_screen.dart';
-import 'package:flutter_consulting_platform/screens/shared/application_buttons.dart';
-import 'package:flutter_consulting_platform/screens/shared/input_fields.dart';
-import 'package:flutter_consulting_platform/screens/shared/shared_scaffold.dart';
-import 'package:flutter_consulting_platform/screens/shared/text.dart';
-import 'package:get/get.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-
-import '../../core/colors.dart';
+import 'package:get/get.dart';
+import '/screens/login/login_controller.dart';
+import '/screens/shared/application_buttons.dart';
+import '/screens/shared/input_fields.dart';
+import '/screens/shared/shared_scaffold.dart';
+import '/screens/shared/text.dart';
+import '/core/colors.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<LoginController>();
     return SafeArea(
       child: SharedScaffold(
         body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const Image(image: AssetImage('asset/images/pngs/welcome.png')),
-              SizedBox(
-                height: 24,
-              ),
-              Center(
-                child: InputField(
-                  icon: Icon(
-                    PhosphorIcons.at,
-                    color: ApplicationColors.primaryButtonColor,
-                  ),
-                  inputController: TextEditingController(),
-                  hintText: 'Email'.tr,
-                  label: 'Email'.tr,
+          child: Form(
+            key: controller.key,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const SizedBox(height: 40),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: SvgPicture.asset('asset/images/svgs/welcoming.svg'),
                 ),
-              ),
-              SizedBox(
-                height: 24,
-              ),
-              Center(
-                child: InputField(
-                  icon: Icon(
-                    PhosphorIcons.password,
-                    color: ApplicationColors.primaryButtonColor,
-                  ),
-                  inputController: TextEditingController(),
-                  hintText: 'Password'.tr,
-                  label: 'Password'.tr,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.15,
                 ),
-              ),
-              SizedBox(
-                height: 24,
-              ),
-              ApplicationPrimaryButton(
-                text: 'Login'.tr,
-                onPressed: () {
-                  Get.offAll(CategoriesScreen());
-                },
-              ),
-              SizedBox(
-                height: 24,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ApplicationText(text: 'NewToApp'.tr),
-                  TextButton(
+                Center(
+                  child: InputField(
+                    type: TextInputType.emailAddress,
+                    icon: const Icon(
+                      PhosphorIcons.at,
+                      color: ApplicationColors.primaryButtonColor,
+                    ),
+                    inputController: controller.email,
+                    hintText: 'Email'.tr,
+                    label: 'Email'.tr,
+                    validator: (value) {
+                      String val = value.toString();
+                      if (val.isEmpty) {
+                        return 'This field required';
+                      }
+                      if (!GetUtils.isEmail(val)) {
+                        return 'Enter a valid email';
+                      }
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Center(
+                  child: InputField(
+                    type: TextInputType.visiblePassword,
+                    obscure: true,
+                    icon: const Icon(
+                      PhosphorIcons.password,
+                      color: ApplicationColors.primaryButtonColor,
+                    ),
+                    inputController: controller.password,
+                    hintText: 'Password'.tr,
+                    label: 'Password'.tr,
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                ApplicationPrimaryButton(
+                  text: 'Login'.tr,
+                  onPressed: () {
+                    if (controller.key.currentState!.validate()) {
+                      controller.login();
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ApplicationText(text: 'NewToApp'.tr),
+                    TextButton(
                       style: TextButton.styleFrom(
                           foregroundColor: ApplicationColors.primaryFont),
                       onPressed: () {
-                        Get.offAll(RegisterScreen());
+                        Get.offAllNamed('/register');
                       },
                       child: ApplicationText(
                         text: 'Register'.tr,
                         color: ApplicationColors.primaryFont,
-                      ))
-                ],
-              ),
-              SizedBox(
-                height: 48,
-              ),
-            ],
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 48,
+                ),
+              ],
+            ),
           ),
         ),
       ),
