@@ -65,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
             EmailFormField(inputController: controller),
             const SizedBox(height: 40),
             InputField(
+              type: TextInputType.phone,
               inputController: TextEditingController(),
               label: 'Phone'.tr,
               hintText: '+1 (518) 400 500',
