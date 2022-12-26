@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_consulting_platform/core/colors.dart';
-import 'package:flutter_consulting_platform/core/fonts.dart';
-import 'package:flutter_consulting_platform/screens/login/login_screen.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import '/core/colors.dart';
+import '/screens/shared/text.dart';
 
 class SharedScaffold extends StatelessWidget {
   final String? title;
@@ -22,7 +22,10 @@ class SharedScaffold extends StatelessWidget {
             const DrawerHeader(
               decoration:
                   BoxDecoration(color: ApplicationColors.primaryBackground),
-              child: Text('Header'),
+              child: ApplicationText(
+                text: 'Header',
+                color: ApplicationColors.light,
+              ),
             ),
             ListTile(
               title: Row(
@@ -35,8 +38,21 @@ class SharedScaffold extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                Get.offAll(LoginScreen());
+                GetStorage().erase();
+                Get.offAllNamed('/login');
               },
+            ),
+            ListTile(
+              title: Row(
+                children: const [
+                  Icon(PhosphorIcons.translate),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  Text('ChangeLanguage')
+                ],
+              ),
+              onTap: () {},
             )
           ],
         ),
@@ -44,13 +60,21 @@ class SharedScaffold extends StatelessWidget {
       appBar: (title != null)
           ? AppBar(
               backgroundColor: ApplicationColors.primaryBackground,
-              title: Text(
-                title!,
-                style: TextStyle(fontFamily: ApplicationFonts.defaultFamily),
+              title: ApplicationText(
+                text: title!,
+                color: ApplicationColors.light,
               ),
             )
           : null,
-      body: body,
+      body: GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.focusedChild!.unfocus();
+          }
+        },
+        child: body,
+      ),
     );
   }
 }
