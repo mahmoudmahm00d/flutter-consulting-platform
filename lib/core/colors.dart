@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 class ApplicationColors {
+  static const primary = Color(0xffbb6464);
+  static const secondary = Color(0xffe9dac1);
   // Background Colors
-  static const primaryBackground = Color(0xffbb6464);
-  static const secondaryBackground = Color(0xffe9dac1);
+  static const primaryBackground = primary;
+  static const secondaryBackground = secondary;
   // Fonts Colors
-  static const primaryFont = Color(0xffbb6464);
-  static const secondaryFont = Color.fromARGB(255, 255, 255, 255);
-  static const light = Color.fromARGB(255, 244, 244, 244);
-  static const dark = Color.fromARGB(255, 15, 15, 15);
-  static const blue = Color.fromARGB(255, 22, 123, 255);
-  static const green = Color.fromARGB(255, 172, 207, 0);
-  static const red = Color.fromARGB(255, 207, 24, 0);
+  static const primaryFont = primary;
+  static const secondaryFont = secondary;
   // Button Colors
-  static const primaryButtonColor = Color(0xffbb6464);
-  static const secondaryButtonColor = Color.fromARGB(255, 255, 255, 255);
+  static const primaryButtonColor = primary;
+  static const secondaryButtonColor = secondary;
+  // Custom colors
+  static const light = Color(0xFFF4F4F4);
+  static const dark = Color(0xFF0F0F0F);
+  static const blue = Color(0xFF167BFF);
+  static const green = Color(0xFFACCF00);
+  static const red = Color(0xFFCF1800);
 }
