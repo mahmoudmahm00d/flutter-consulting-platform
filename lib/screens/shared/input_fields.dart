@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_consulting_platform/core/colors.dart';
-import 'package:flutter_consulting_platform/core/fonts.dart';
-import 'package:flutter_consulting_platform/core/validators.dart';
+import '/core/colors.dart';
+import '/core/fonts.dart';
+import '/core/validators.dart';
 import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -92,7 +92,9 @@ class InputField extends StatelessWidget {
   final String hintText;
   final double height;
   final double width;
+  final bool obscure;
   final Icon? icon;
+  final TextInputType type;
   final TextEditingController inputController;
   final Function(String)? onChanged;
   final FormFieldValidator? validator;
@@ -102,8 +104,10 @@ class InputField extends StatelessWidget {
     required this.inputController,
     required this.hintText,
     required this.label,
+    required this.type,
     this.width = 320,
-    this.height = 48,
+    this.height = 68,
+    this.obscure = false,
     this.icon,
     this.onChanged,
     this.validator,
@@ -131,7 +135,8 @@ class InputField extends StatelessWidget {
           width: width,
           child: TextFormField(
             controller: inputController,
-            keyboardType: TextInputType.emailAddress,
+            obscureText: obscure,
+            keyboardType: type,
             style: const TextStyle(fontSize: 14, color: Colors.black),
             onChanged: onChanged,
             validator: validator,
@@ -146,7 +151,7 @@ class InputField extends StatelessWidget {
                 color: Colors.black54,
               ),
               contentPadding: const EdgeInsets.symmetric(
-                vertical: 0.0,
+                vertical: 4.0,
                 horizontal: 20.0,
               ),
               border: const OutlineInputBorder(
