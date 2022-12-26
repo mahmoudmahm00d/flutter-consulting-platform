@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_consulting_platform/screens/login/login_screen.dart';
-import 'package:flutter_consulting_platform/screens/shared/shared_scaffold.dart';
-import 'package:flutter_consulting_platform/screens/shared/text.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import '/screens/login/login_screen.dart';
+import '/screens/register/register_controller.dart';
+import '/screens/shared/shared_scaffold.dart';
+import '/screens/shared/text.dart';
 import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -17,10 +19,11 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  var role="User";
+  var role = "User";
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<RegisterController>();
     return SafeArea(
       child: SharedScaffold(
         body: SingleChildScrollView(
@@ -28,96 +31,152 @@ class _RegisterScreenState extends State<RegisterScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              const SizedBox(height: 40),
               SizedBox(
-                  height: MediaQuery.of(context).size.height / 3,
-                  child: const Image(
-                      image: AssetImage('asset/images/pngs/4.png'))),
-              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: SvgPicture.asset('asset/images/svgs/register.svg'),
+                ),
+              ),
+              ApplicationText(
+                text: 'CreateNewAccount'.tr,
+                size: 24,
+                weight: FontWeight.bold,
+              ),
+              const SizedBox(
                 height: 24,
               ),
               Center(
                 child: InputField(
-                  icon: Icon(
+                  type: TextInputType.name,
+                  icon: const Icon(
                     PhosphorIcons.user,
                     color: ApplicationColors.primaryButtonColor,
                   ),
-                  inputController: TextEditingController(),
+                  inputController: controller.name,
                   hintText: 'FullName'.tr,
                   label: 'FullName'.tr,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Center(
                 child: InputField(
-                  icon: Icon(
+                  type: TextInputType.emailAddress,
+                  icon: const Icon(
                     PhosphorIcons.at,
                     color: ApplicationColors.primaryButtonColor,
                   ),
-                  inputController: TextEditingController(),
+                  inputController: controller.email,
                   hintText: 'Email'.tr,
                   label: 'Email'.tr,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Center(
                 child: InputField(
-                  icon: Icon(
+                  type: TextInputType.phone,
+                  icon: const Icon(
+                    PhosphorIcons.phone,
+                    color: ApplicationColors.primaryButtonColor,
+                  ),
+                  inputController: controller.phone,
+                  hintText: 'Phone'.tr,
+                  label: 'Phone'.tr,
+                ),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              Center(
+                child: InputField(
+                  type: TextInputType.visiblePassword,
+                  icon: const Icon(
                     PhosphorIcons.password,
                     color: ApplicationColors.primaryButtonColor,
                   ),
-                  inputController: TextEditingController(),
+                  obscure: true,
+                  inputController: controller.password,
                   hintText: 'Password'.tr,
                   label: 'Password'.tr,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Center(
                 child: InputField(
-                  icon: Icon(
+                  type: TextInputType.visiblePassword,
+                  icon: const Icon(
                     PhosphorIcons.password,
                     color: ApplicationColors.primaryButtonColor,
                   ),
-                  inputController: TextEditingController(),
+                  inputController: controller.confirmPassword,
+                  obscure: true,
                   hintText: 'ConfirmPassword'.tr,
                   label: 'ConfirmPassword'.tr,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ApplicationText(text: 'User'.tr),
-                  Radio(activeColor: ApplicationColors.primaryBackground,value: 'User', groupValue: role, onChanged: (val) {
-                    setState(() {
-                      role = 'User';
-                    });
-                  }),
+                  Radio(
+                      activeColor: ApplicationColors.primaryBackground,
+                      value: 'User',
+                      groupValue: role,
+                      onChanged: (val) {
+                        setState(() {
+                          controller.role = 'User';
+                        });
+                      }),
                   ApplicationText(text: 'Specialist'.tr),
-                  Radio(activeColor: ApplicationColors.primaryBackground,value: 'Specialist', groupValue: role, onChanged: (val) {
-                    setState(() {
-                      role='Specialist';
-                    });
-                  }),
+                  Radio(
+                      activeColor: ApplicationColors.primaryBackground,
+                      value: 'Specialist',
+                      groupValue: role,
+                      onChanged: (val) {
+                        setState(() {
+                          controller.role = 'Specialist';
+                        });
+                      }),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               ApplicationPrimaryButton(
-                text: 'Login'.tr,
+                text: 'Register'.tr,
                 onPressed: () {
-                  Get.offAll(LoginScreen());
+                  controller.register();
                 },
               ),
-              SizedBox(
+              const SizedBox(
+                height: 24,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ApplicationText(text: 'AlreadyHaveAccount'.tr),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                        foregroundColor: ApplicationColors.primaryFont),
+                    onPressed: () => Get.offAllNamed('/login'),
+                    child: ApplicationText(
+                      text: 'Login'.tr,
+                      color: ApplicationColors.primaryFont,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
                 height: 48,
               ),
             ],
