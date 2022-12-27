@@ -16,6 +16,8 @@ class RegisterController extends GetxController {
   late TextEditingController phone;
   String role = 'User';
 
+  GlobalKey<FormState> key = GlobalKey<FormState>();
+
   @override
   void onInit() {
     name = TextEditingController();

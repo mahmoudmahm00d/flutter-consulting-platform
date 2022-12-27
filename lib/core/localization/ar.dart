@@ -16,4 +16,5 @@ Map<String, String> arabic = {
   'Specialist': 'مختص',
   'AlreadyHaveAccount': 'هل تمتلك حساباً بالفعل؟',
   'CreateNewAccount': 'انشاء حساب جديد',
+  'Thisfieldrequired': 'هذا الحقل مطلوب',
 };

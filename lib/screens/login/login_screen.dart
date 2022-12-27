@@ -46,10 +46,10 @@ class LoginScreen extends StatelessWidget {
                     validator: (value) {
                       String val = value.toString();
                       if (val.isEmpty) {
-                        return 'This field required';
+                        return 'This field required'.tr;
                       }
                       if (!GetUtils.isEmail(val)) {
-                        return 'Enter a valid email';
+                        return 'Enter a valid email'.tr;
                       }
                     },
                   ),
@@ -68,6 +68,12 @@ class LoginScreen extends StatelessWidget {
                     inputController: controller.password,
                     hintText: 'Password'.tr,
                     label: 'Password'.tr,
+                    validator: (value) {
+                      String val = value.toString();
+                      if (val.isEmpty) {
+                        return 'This field required'.tr;
+                      }
+                    },
                   ),
                 ),
                 const SizedBox(

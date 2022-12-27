@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_consulting_platform/screens/profile/profile_controller.dart';
+import 'package:flutter_consulting_platform/screens/profile/profile_screen.dart';
+import 'package:flutter_consulting_platform/screens/wallet/wallet_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -27,7 +30,8 @@ class MyApp extends StatelessWidget {
         name: '/unknown',
         page: () => const UnknownRouteScreen(),
       ),
-      initialRoute: '/login',
+      // initialRoute: '/login',
+      home: ProfileScreen(),
     );
   }
 }

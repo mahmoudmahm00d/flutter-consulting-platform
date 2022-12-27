@@ -16,4 +16,5 @@ Map<String, String> english = {
   'Specialist': 'Specialist',
   'AlreadyHaveAccount': 'Already have account?',
   'CreateNewAccount': 'Create New Account',
+  'Thisfieldrequired': 'This field required',
 };
