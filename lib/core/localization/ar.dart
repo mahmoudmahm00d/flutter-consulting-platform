@@ -17,4 +17,12 @@ Map<String, String> arabic = {
   'AlreadyHaveAccount': 'هل تمتلك حساباً بالفعل؟',
   'CreateNewAccount': 'انشاء حساب جديد',
   'Thisfieldrequired': 'هذا الحقل مطلوب',
+  'NewEmail':'البريد الإلكتروني الجديد',
+  'Change':'تغير',
+  'OldPassword':'كلمة المرور القديمة',
+  'NewPassword':'كلمة المرور الجديدة',
+  'Change Password':'تغير كلمة المرور',
+  'Change Email':'تغير الحساب الإلكتروني',
+  'NewPhone':'رقم الهاتف الجديد',
+  'Change Phone':'تغير رقم الهاتف',
 };

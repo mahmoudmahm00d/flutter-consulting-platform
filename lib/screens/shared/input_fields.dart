@@ -95,13 +95,13 @@ class InputField extends StatelessWidget {
   final bool obscure;
   final Icon? icon;
   final TextInputType type;
-  final TextEditingController inputController;
+  final TextEditingController? inputController;
   final Function(String)? onChanged;
   final FormFieldValidator? validator;
 
   const InputField({
     Key? key,
-    required this.inputController,
+    this.inputController,
     required this.hintText,
     required this.label,
     required this.type,

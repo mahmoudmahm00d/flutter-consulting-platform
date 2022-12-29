@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_consulting_platform/screens/categories/categories_screen.dart';
+import 'package:flutter_consulting_platform/screens/email_change/email_change_screen.dart';
+import 'package:flutter_consulting_platform/screens/password_change/password_change_screen.dart';
+import 'package:flutter_consulting_platform/screens/phone_change/phone_change_screen.dart';
 import 'package:flutter_consulting_platform/screens/profile/profile_controller.dart';
 import 'package:flutter_consulting_platform/screens/profile/profile_screen.dart';
 import 'package:flutter_consulting_platform/screens/wallet/wallet_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../screens/homepage/homepage.dart';
 import '../screens/unknown_route/unknown_route_screen.dart';
 import 'pages.dart';
 import 'theme.dart';
@@ -30,8 +35,8 @@ class MyApp extends StatelessWidget {
         name: '/unknown',
         page: () => const UnknownRouteScreen(),
       ),
-      // initialRoute: '/login',
-      home: ProfileScreen(),
+       //initialRoute: '/login',
+      home:PhoneChangeScreen(),
     );
   }
 }

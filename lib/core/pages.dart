@@ -1,3 +1,4 @@
+import 'package:flutter_consulting_platform/screens/email_change/email_change_screen.dart';
 import 'package:get/get.dart';
 
 import '/core/dependencies/bindings.dart';
@@ -27,4 +28,6 @@ List<GetPage> pages = [
     page: () => const CategoriesScreen(),
     binding: CategoriesBindings(),
   ),
+
+
 ];

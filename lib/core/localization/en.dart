@@ -17,4 +17,12 @@ Map<String, String> english = {
   'AlreadyHaveAccount': 'Already have account?',
   'CreateNewAccount': 'Create New Account',
   'Thisfieldrequired': 'This field required',
+  'NewEmail':'New Email',
+  'Change':'Change',
+  'OldPassword':'OldPassword',
+  'NewPassword':'NewPassword',
+  'Change Password':'Change Password',
+  'Change Email':'Change Email',
+  'NewPhone':'New Phone',
+  'Change Phone':'Change Phone',
 };
