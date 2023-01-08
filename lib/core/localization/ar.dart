@@ -25,4 +25,5 @@ Map<String, String> arabic = {
   'Change Email':'تغير الحساب الإلكتروني',
   'NewPhone':'رقم الهاتف الجديد',
   'Change Phone':'تغير رقم الهاتف',
+  'Search':'بحث',
 };

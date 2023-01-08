@@ -5,6 +5,7 @@ import 'package:flutter_consulting_platform/screens/password_change/password_cha
 import 'package:flutter_consulting_platform/screens/phone_change/phone_change_screen.dart';
 import 'package:flutter_consulting_platform/screens/profile/profile_controller.dart';
 import 'package:flutter_consulting_platform/screens/profile/profile_screen.dart';
+import 'package:flutter_consulting_platform/screens/search/search.dart';
 import 'package:flutter_consulting_platform/screens/wallet/wallet_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -35,8 +36,8 @@ class MyApp extends StatelessWidget {
       unknownRoute: GetPage(
         name: '/unknown',
         page: () => const UnknownRouteScreen(),
-      ),
-      initialRoute: box.read('token') == null ? '/login' : '/dashboard',
+      ),home: Search_Screen(),
+     // initialRoute: box.read('token') == null ? '/login' : '/dashboard',
     );
   }
 }

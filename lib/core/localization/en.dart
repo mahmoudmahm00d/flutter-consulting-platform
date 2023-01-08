@@ -25,4 +25,5 @@ Map<String, String> english = {
   'Change Email':'Change Email',
   'NewPhone':'New Phone',
   'Change Phone':'Change Phone',
+  'Search':'Search',
 };
