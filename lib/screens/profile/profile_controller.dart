@@ -1,12 +1,30 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/src/widgets/container.dart';
-// import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_consulting_platform/models/specialists.dart';
+import 'package:flutter_consulting_platform/repositories/account_repository.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-// class ProfileScreen extends StatelessWidget {
-//   const ProfileScreen({super.key});
+import '../../models/user.dart';
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold();
-//   }
-// }
+class ProfileController extends GetxController {
+  late User? user;
+  late Specialist? specialist;
+  late String role;
+  late AccountRepository _repository;
+  var loading = true.obs;
+
+  @override
+  void onInit() async {
+    role = GetStorage().read('role');
+    _repository = AccountRepository();
+    loading.value = true;
+    if (role == 'User') {
+      var response = await _repository.userProfile();
+      user = response.data;
+    } else {
+      var response = await _repository.specialistProfile();
+      specialist = response.data;
+    }
+    loading.value = false;
+    super.onInit();
+  }
+}

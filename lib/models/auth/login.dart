@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '/models/base_response.dart';
+
 LoginRequest loginRequestFromJson(String str) =>
     LoginRequest.fromJson(json.decode(str));
 
@@ -28,41 +30,47 @@ class LoginRequest {
 LoginResponse loginResponseFromJson(String str) =>
     LoginResponse.fromJson(json.decode(str));
 
-String loginResponseToJson(LoginResponse data) => json.encode(data.toJson());
-
-class LoginResponse {
+class LoginResponse extends BaseResponse {
   LoginResponse({
-    this.status,
-    this.code,
-    this.message,
+    super.status,
+    super.code,
+    super.message,
+    super.data,
+  });
+
+  factory LoginResponse.fromJson(Map<String, dynamic> json) {
+    return LoginResponse(
+      status: json['status'],
+      code: json['code'],
+      message: json['message'],
+      data: AccessTokenResponse.fromJson(json['data']),
+    );
+  }
+}
+
+class AccessTokenResponse {
+  String? accessToken;
+  String? role;
+  String? tokenType;
+  int? expiresIn;
+
+  AccessTokenResponse({
     this.accessToken,
     this.role,
     this.tokenType,
     this.expiresIn,
   });
 
-  String? status;
-  int? code;
-  String? message;
-  String? accessToken;
-  String? role;
-  String? tokenType;
-  int? expiresIn;
+  static fromJson(Map<String, dynamic> json) {
+    if (json == null || json.isEmpty) {
+      return null;
+    }
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
-        accessToken: json["access_token"],
-        role: json["role"],
-        tokenType: json["token_type"],
-        expiresIn: json["expires_in"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "status": status,
-        "code": code,
-        "message": message,
-        "access_token": accessToken,
-        "role": role,
-        "token_type": tokenType,
-        "expires_in": expiresIn,
-      };
+    return AccessTokenResponse(
+      accessToken: json["access_token"],
+      role: json["role"],
+      tokenType: json["token_type"],
+      expiresIn: json["expires_in"],
+    );
+  }
 }

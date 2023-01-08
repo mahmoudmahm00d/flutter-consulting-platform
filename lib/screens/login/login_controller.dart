@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '/core/colors.dart';
 import '/repositories/auth_repository.dart';
-import '/screens/categories/categories_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -17,7 +16,8 @@ class LoginController extends GetxController {
   void onInit() {
     email = TextEditingController();
     password = TextEditingController();
-    _repository = Get.put<AuthRepository>(AuthRepository());
+    _repository = Get.find<AuthRepository>();
+
     if (Get.arguments != null) {
       Get.snackbar(
         icon: const Icon(PhosphorIcons.check),
@@ -48,23 +48,22 @@ class LoginController extends GetxController {
 
     Get.back();
 
-    if (response.status == 'error') {
-      Get.snackbar(
-        icon: const Icon(PhosphorIcons.info),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-        snackPosition: SnackPosition.BOTTOM,
-        colorText: ApplicationColors.light,
-        margin: const EdgeInsets.all(24),
-        backgroundColor: ApplicationColors.red.withAlpha(120),
-        'error',
-        response.message!.contains('401')
-            ? 'Invalid email or password'
-            : 'Unknown error',
-      );
-    } else {
-      GetStorage().write('token', response.accessToken);
-      var token = GetStorage().read('token');
-      Get.to(const CategoriesScreen());
+    if (response.code == 200) {
+      GetStorage().write('token', response.data.accessToken);
+      GetStorage().write('role', response.data.role);
+      Get.toNamed('/dashboard');
+      return;
     }
+
+    Get.snackbar(
+      icon: const Icon(PhosphorIcons.info),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+      snackPosition: SnackPosition.BOTTOM,
+      colorText: ApplicationColors.light,
+      margin: const EdgeInsets.all(24),
+      backgroundColor: ApplicationColors.red.withAlpha(120),
+      'error',
+      response.message!,
+    );
   }
 }

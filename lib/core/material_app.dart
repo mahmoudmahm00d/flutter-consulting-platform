@@ -21,12 +21,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var box = GetStorage();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.cupertino,
       title: Constants.applicationTitle,
       translations: locale.Localizations(),
-      locale: GetStorage().read("locale") == 'ar'
+      locale: box.read("locale") == 'ar'
           ? const Locale('ar', 'SY')
           : const Locale('en', 'US'),
       theme: appTheme,
@@ -35,8 +36,7 @@ class MyApp extends StatelessWidget {
         name: '/unknown',
         page: () => const UnknownRouteScreen(),
       ),
-       //initialRoute: '/login',
-      home:PhoneChangeScreen(),
+      initialRoute: box.read('token') == null ? '/login' : '/dashboard',
     );
   }
 }

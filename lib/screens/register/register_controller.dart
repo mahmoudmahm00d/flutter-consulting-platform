@@ -25,7 +25,7 @@ class RegisterController extends GetxController {
     phone = TextEditingController();
     password = TextEditingController();
     confirmPassword = TextEditingController();
-    _repository = Get.put<AuthRepository>(AuthRepository());
+    _repository = Get.find<AuthRepository>();
     super.onInit();
   }
 
@@ -64,7 +64,7 @@ class RegisterController extends GetxController {
             : 'Unknown error',
       );
     } else {
-      Get.to(const LoginScreen(), arguments: 'registered');
+      Get.toNamed("/login", arguments: 'registered');
     }
   }
 }

@@ -6,7 +6,7 @@ class Networking {
   late Dio _dio;
   static Map<String, dynamic> authHeaders = {
     Headers.acceptHeader: Headers.jsonContentType,
-    'Authorization': GetStorage().read('token')
+    'Authorization': 'Bearer ' + GetStorage().read('token')
   };
 
   set headers(Map<String, dynamic> headers) {

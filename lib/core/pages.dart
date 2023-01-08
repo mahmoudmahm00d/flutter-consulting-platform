@@ -1,8 +1,8 @@
-import 'package:flutter_consulting_platform/screens/email_change/email_change_screen.dart';
 import 'package:get/get.dart';
 
 import '/core/dependencies/bindings.dart';
 import '/core/constants.dart';
+import '/screens/dashboard/dashboard_screen.dart';
 import '/screens/categories/categories_screen.dart';
 import '/screens/homepage/homepage.dart';
 import '/screens/login/login_screen.dart';
@@ -28,6 +28,9 @@ List<GetPage> pages = [
     page: () => const CategoriesScreen(),
     binding: CategoriesBindings(),
   ),
-
-
+  GetPage(
+    name: '/dashboard',
+    page: () => const DashboardScreen(),
+    binding: DashboardBindings(),
+  ),
 ];

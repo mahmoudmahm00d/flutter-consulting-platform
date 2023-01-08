@@ -1,27 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_consulting_platform/core/colors.dart';
+import 'package:flutter_consulting_platform/core/fonts.dart';
 import 'package:flutter_consulting_platform/screens/shared/application_buttons.dart';
+import 'package:flutter_consulting_platform/screens/shared/text.dart';
+import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:readmore/readmore.dart';
 
-class RecipeItemMallika1 extends StatelessWidget {
-  String title;
-  String subtitle;
-  RecipeItemMallika1({required this.title, required this.subtitle, Key? key})
-      : super(key: key);
-  final dishImage =
-      "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/malika%2FRectangle%2013.png?alt=media&token=6a5f056c-417c-48d3-b737-f448e4f13321";
-  final orangeColor = const Color(0xffFF8527);
+class SpecializeCard extends StatelessWidget {
+  final String title;
+  final String description;
+  final String price;
+
+  const SpecializeCard({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.price,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
       color: Colors.white,
       child: ListTile(
-        title: Text(title),
-        subtitle: Row(
+        title: Row(
           children: [
-            Text(subtitle),
+            ApplicationText(
+              text: title,
+              weight: FontWeight.w600,
+            ),
+            const Spacer(),
+            ApplicationText(
+              text: price.toString(),
+              color: ApplicationColors.primary,
+            ),
           ],
+        ),
+        subtitle: ReadMoreText(
+          description,
+          trimLines: 2,
+          textAlign: TextAlign.justify,
+          trimMode: TrimMode.Line,
+          trimCollapsedText: 'ShowMore'.tr,
+          trimExpandedText: 'ShowLess'.tr,
+          moreStyle: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: ApplicationColors.primary,
+              fontFamily: ApplicationFonts.defaultFamily),
         ),
       ),
     );

@@ -1,14 +1,19 @@
-class Categories {
-  String message;
-  List<Category> data;
+import 'base_response.dart';
 
+class Categories extends BaseResponse {
+  @override
+  final List<Category> data;
   Categories({
-    required this.message,
+    required super.message,
+    required super.code,
+    required super.status,
     required this.data,
   });
 
   factory Categories.fromJson(Map<String, dynamic> json) {
     return Categories(
+      status: json['status'],
+      code: json['code'],
       message: json['message'],
       data: (json['data'] as List<dynamic>)
           .map((e) => Category.fromJson(e))
@@ -20,7 +25,7 @@ class Categories {
 class Category {
   int id;
   String name;
-  dynamic image;
+  String? image;
 
   Category({
     required this.id,

@@ -23,11 +23,25 @@ class AuthRepository {
         ).toJson(),
       );
 
-      return LoginResponse.fromJson(response.data)
-        ..status = 'success'
-        ..code = 200;
+      return LoginResponse.fromJson(response.data);
     } on DioError catch (e) {
-      return LoginResponse(message: e.message, status: 'error');
+      String message = "";
+      String status = "";
+
+      if (e.type == DioErrorType.connectTimeout) {
+        message = e.message;
+        status = "error";
+      } else {
+        message = e.response!.data['message'];
+        status = e.response!.data['status'];
+      }
+
+      return LoginResponse(message: message, status: status);
+    } catch (e) {
+      return LoginResponse(
+        status: 'error',
+        message: e.toString(),
+      );
     }
   }
 
@@ -56,7 +70,28 @@ class AuthRepository {
         message: 'Account created successfully',
       );
     } on DioError catch (e) {
-      return BaseResponse(message: e.message, status: 'error');
+      String message = "";
+      String status = "";
+
+      if (e.response!.statusCode == 422) {
+        status = "error";
+        message = e.response!.data['errors'].toString();
+      }
+
+      if (e.type == DioErrorType.connectTimeout) {
+        message = e.message;
+        status = "error";
+      } else {
+        message = e.response!.data['message'];
+        status = e.response!.data['status'];
+      }
+
+      return BaseResponse(message: message, status: status);
+    } catch (e) {
+      return LoginResponse(
+        status: 'error',
+        message: e.toString(),
+      );
     }
   }
 }
