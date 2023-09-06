@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_consulting_platform/models/specialist_profile.dart';
+import 'package:flutter_consulting_platform/screens/categories/specialists_controller.dart';
 import 'package:flutter_consulting_platform/screens/specialists/components/specialist_card.dart';
-import 'package:flutter_consulting_platform/screens/specialists/specialist_profile_screen.dart';
 import 'package:shimmer/shimmer.dart';
+import '../specialists/specialist_profile_screen.dart';
 import '/screens/shared/shared_scaffold.dart';
 import '/screens/specialists/specialists_controller.dart';
 import 'package:get/get.dart';
 
-class SpecialistsScreen extends GetView<SpecialistsController> {
-  const SpecialistsScreen({super.key});
+class SpecialistByCategory extends GetView<SpecialistsByCategoryController> {
+  const SpecialistByCategory({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put<SpecialistsByCategoryController>(SpecialistsByCategoryController());
+
     return SharedScaffold(
-      title: 'Specialists'.tr,
+      title: controller.title,
       body: Center(
         child: Obx(
           () {
             if (controller.loading.isTrue) {
               return GridView.count(
                 childAspectRatio: 3 / 1,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 20,
+                ),
                 crossAxisCount: 1,
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 20,

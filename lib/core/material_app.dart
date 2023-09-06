@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
       unknownRoute: GetPage(
         name: '/unknown',
         page: () => const UnknownRouteScreen(),
-      ),home: Search_Screen(),
-     // initialRoute: box.read('token') == null ? '/login' : '/dashboard',
+      ),
+      initialRoute: box.read('token') == null ? '/login' : '/dashboard',
     );
   }
 }

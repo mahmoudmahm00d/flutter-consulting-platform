@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_consulting_platform/core/fonts.dart';
 import 'package:flutter_consulting_platform/models/specialists.dart';
+import 'package:flutter_consulting_platform/screens/profile/components/contacts_widget.dart';
+import 'package:flutter_consulting_platform/screens/profile/components/specializes_widget.dart';
 import 'package:flutter_consulting_platform/screens/profile/profile_controller.dart';
 import 'package:flutter_consulting_platform/screens/shared/application_buttons.dart';
 import 'package:flutter_consulting_platform/screens/shared/custom.dart';
@@ -72,8 +74,15 @@ class SpecialistProfileScreen extends StatelessWidget {
             ),
             Center(
               child: ApplicationText(
-                text: specialist?.name ?? 'Name',
+                text: specialist?.name ?? 'Name'.tr,
                 size: 20,
+                weight: FontWeight.bold,
+              ),
+            ),
+            Center(
+              child: ApplicationText(
+                text: specialist?.email ?? 'Email'.tr,
+                size: 12,
                 weight: FontWeight.bold,
               ),
             ),
@@ -112,39 +121,42 @@ class SpecialistProfileScreen extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            Center(
-              child: ApplicationText(
-                text: categories.isNotEmpty
-                    ? categories
-                    : 'Please add specializes',
-              ),
+            ApplicationText(
+              text: categories.isNotEmpty
+                  ? categories
+                  : 'PleaseAddSpecializes'.tr,
             ),
             const SizedBox(
               height: 24,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: ReadMoreText(
-                specialist?.about ?? "Please add about",
-                trimLines: 3,
-                textAlign: TextAlign.justify,
-                colorClickableText: ApplicationColors.primaryFont,
-                trimMode: TrimMode.Line,
-                trimCollapsedText: 'Show more',
-                trimExpandedText: 'Show less',
-                moreStyle: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: ApplicationColors.primary,
-                  fontFamily: ApplicationFonts.defaultFamily,
-                ),
-              ),
-            ),
+            (specialist!.about != null)
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: ReadMoreText(
+                      specialist?.about ?? "PleaseAddAbout".tr,
+                      trimLines: 3,
+                      textAlign: TextAlign.justify,
+                      colorClickableText: ApplicationColors.primaryFont,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: 'ShowMore'.tr,
+                      trimExpandedText: 'ShowLess'.tr,
+                      moreStyle: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: ApplicationColors.primary,
+                        fontFamily: ApplicationFonts.defaultFamily,
+                      ),
+                    ),
+                  )
+                : ApplicationSecondaryButton(
+                    text: 'AddAbout'.tr,
+                    onPressed: () {},
+                  ),
             const SizedBox(
               height: 12,
             ),
-            const ApplicationText(
-              text: 'Specializes',
+            ApplicationText(
+              text: 'Specializes'.tr,
               weight: FontWeight.bold,
               size: 18,
             ),
@@ -152,41 +164,43 @@ class SpecialistProfileScreen extends StatelessWidget {
               height: 12,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SpecializeCard(
-                title: 'medical',
-                description: '',
-                price: "50",
+              padding: const EdgeInsets.all(16.0),
+              child: SpecializesWidget(
+                specializes: specialist?.specializes,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SpecializeCard(
-                title: 'medical',
-                description: '5',
-                price: "50",
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SpecializeCard(
-                title: 'medical',
-                description: '5',
-                price: "50",
-              ),
-            ),
-            SizedBox(
-              height: 20,
+            const SizedBox(
+              height: 12,
             ),
             ApplicationText(
-              text: 'Contact infos',
-              size: 20,
+              text: 'ContactInfos'.tr,
+              weight: FontWeight.bold,
+              size: 18,
             ),
-            SizedBox(
-              height: 20,
+            const SizedBox(
+              height: 12,
             ),
-            FacebookBtn1(onPressed: () {}),
-            WhatsappButton(onPressed: (() {})),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ContactsWidget(
+                contacts: specialist?.contacts,
+              ),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            ApplicationText(
+              text: 'Schedule'.tr,
+              weight: FontWeight.bold,
+              size: 18,
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            ApplicationSecondaryButton(
+              text: 'Schedule'.tr,
+              onPressed: () {},
+            )
           ],
         ),
       ),

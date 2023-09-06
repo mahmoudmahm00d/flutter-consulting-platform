@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_consulting_platform/core/constants.dart';
+import 'package:flutter_consulting_platform/screens/email_change/email_change_screen.dart';
+import 'package:flutter_consulting_platform/screens/password_change/password_change_screen.dart';
+import 'package:flutter_consulting_platform/screens/phone_change/phone_change_screen.dart';
 import 'package:flutter_consulting_platform/screens/shared/application_buttons.dart';
 import 'package:flutter_consulting_platform/screens/shared/bottom_nav_bar.dart';
+import 'package:flutter_consulting_platform/screens/wallet/wallet_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -42,10 +46,12 @@ class SharedScaffold extends StatelessWidget {
                   SizedBox(
                     width: 12,
                   ),
-                  Text('Wallet')
+                  ApplicationText(text: 'Wallet')
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Get.to(const WalletScreen());
+              },
             ),
             const Spacer(),
             ListTile(
@@ -59,21 +65,55 @@ class SharedScaffold extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                Get.defaultDialog(
-                  titlePadding: const EdgeInsets.only(top: 16.0),
-                  contentPadding: const EdgeInsets.all(16.0),
-                  content: ApplicationText(
-                    text: 'ChangeToLanguage'.tr,
+                if (Get.locale == const Locale('en', 'US')) {
+                  Get.updateLocale(const Locale('ar', 'SY'));
+                  GetStorage().write("locale", "ar");
+                } else {
+                  Get.updateLocale(const Locale('en', 'US'));
+                  GetStorage().write("locale", "en");
+                }
+              },
+            ),
+            ListTile(
+              title: Row(
+                children: [
+                  const Icon(PhosphorIcons.password),
+                  const SizedBox(
+                    width: 12,
                   ),
-                  title: 'ChangeLanguage'.tr,
-                  actions: [
-                    ApplicationSecondaryButton(
-                      text: 'Ok'.tr,
-                      width: 60,
-                      onPressed: () {},
-                    ),
-                  ],
-                );
+                  Text('ChangePassword'.tr)
+                ],
+              ),
+              onTap: () {
+                Get.to(const PasswordChangeScreen());
+              },
+            ),
+            ListTile(
+              title: Row(
+                children: [
+                  const Icon(PhosphorIcons.phone),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  Text('ChangePhone'.tr)
+                ],
+              ),
+              onTap: () {
+                Get.to(const PhoneChangeScreen());
+              },
+            ),
+            ListTile(
+              title: Row(
+                children: [
+                  const Icon(PhosphorIcons.at),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  Text('ChangeEmail'.tr)
+                ],
+              ),
+              onTap: () {
+                Get.to(EmailChangeScreen());
               },
             ),
             ListTile(
@@ -93,7 +133,7 @@ class SharedScaffold extends StatelessWidget {
             ),
             const SizedBox(
               height: 24,
-            )
+            ),
           ],
         ),
       ),

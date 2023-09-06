@@ -1,6 +1,6 @@
 class Constants {
-  static const String baseURL = 'http://172.31.80.1:8000/api/';
-  static const String baseImageURL = 'http://172.31.80.1:8000/';
+  static const String baseURL = 'http://10.0.2.2:8000/api/';
+  static const String baseImageURL = 'http://10.0.2.2:8000/';
   static const String applicationTitle = 'Full Consulting';
 }
 
@@ -33,7 +33,7 @@ class ApiEndPoints {
 
   // Specialists
   static const String specialists = "specialists";
-  static const String specialistsByCategory = "specialists/ByCategory/{id}";
+  static const String specialistsByCategory = "specialists/byCategory/{id}";
   static const String specialistProfile = "specialists/{id}";
   static const String specialistSchedule = "specialists/schedule/{id}";
   static const String rate = "specialists/rate";

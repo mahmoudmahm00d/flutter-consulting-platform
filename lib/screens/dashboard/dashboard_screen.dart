@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_consulting_platform/screens/search/search.dart';
 import 'package:flutter_consulting_platform/screens/specialists/specialists_screen.dart';
 import '/screens/categories/categories_screen.dart';
 import '/screens/profile/profile_screen.dart';
@@ -22,7 +23,7 @@ class DashboardScreen extends StatelessWidget {
               children: [
                 const CategoriesScreen(),
                 const SpecialistsScreen(),
-                Container(),
+                const SearchScreen(),
                 Container(),
                 const ProfileScreen(),
               ],

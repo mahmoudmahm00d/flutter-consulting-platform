@@ -5,29 +5,27 @@ import 'package:get/get.dart';
 
 import '../../shared/custom.dart';
 
-class SpecializesWidget extends StatelessWidget {
-  final List<Specialize?>? specializes;
-  const SpecializesWidget({super.key, this.specializes});
+class ContactsWidget extends StatelessWidget {
+  final List<Contact?>? contacts;
+  const ContactsWidget({super.key, this.contacts});
 
   @override
   Widget build(BuildContext context) {
-    if (specializes?.isEmpty ?? true) {
+    if (contacts?.isEmpty ?? true) {
       return ApplicationSecondaryButton(
-        text: 'Add Specializes',
-        onPressed: () {
-          Get.toNamed("/add_specialize");
-        },
+        text: 'AddContacts'.tr,
+        onPressed: () {},
       );
     }
 
     return Column(
       children: [
         Column(
-          children: specializes!
+          children: contacts!
               .map((e) => SpecializeCard(
-                    title: e?.name ?? '',
-                    description: e?.description ?? '',
-                    price: e?.price.toString() ?? "0.0",
+                    title: e?.type?.name ?? '',
+                    description: e?.contactInfo ?? '',
+                    price: "",
                   ))
               .toList(),
         ),
@@ -35,10 +33,8 @@ class SpecializesWidget extends StatelessWidget {
           height: 16,
         ),
         ApplicationSecondaryButton(
-          text: 'Add Specializes',
-          onPressed: () {
-            Get.toNamed("/add_specialize");
-          },
+          text: 'AddContacts'.tr,
+          onPressed: () {},
         )
       ],
     );

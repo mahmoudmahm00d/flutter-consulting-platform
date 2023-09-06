@@ -1,3 +1,4 @@
+import 'package:flutter_consulting_platform/screens/profile/components/add_specialize/add_specialize_controller.dart';
 import 'package:get/get.dart';
 
 import '/repositories/auth_repository.dart';
@@ -41,5 +42,19 @@ class DashboardBindings extends Bindings {
   @override
   void dependencies() {
     Get.put<DashboardController>(DashboardController());
+  }
+}
+
+class SearchBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.put<DashboardController>(DashboardController());
+  }
+}
+
+class AddSpecializeBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.put<AddSpecializeController>(AddSpecializeController());
   }
 }

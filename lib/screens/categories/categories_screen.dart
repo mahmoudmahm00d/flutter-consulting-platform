@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_consulting_platform/models/specialists.dart';
 import 'package:flutter_consulting_platform/screens/categories/categories_controller.dart';
+import 'package:flutter_consulting_platform/screens/categories/specialist_by_category.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -14,7 +16,7 @@ class CategoriesScreen extends GetView<CategoriesController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SharedScaffold(
-        title: "Categories",
+        title: "Categories".tr,
         body: Obx(
           () {
             if (controller.loading.isTrue) {
@@ -50,6 +52,8 @@ class CategoriesScreen extends GetView<CategoriesController> {
                 return CategoryCard(
                   name: element.name,
                   imageUrl: element.image,
+                  onTap: () =>
+                      Get.to(SpecialistByCategory(), arguments: element.id),
                 );
               }).toList(),
             );

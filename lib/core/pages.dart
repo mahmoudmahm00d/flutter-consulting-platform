@@ -1,3 +1,5 @@
+import 'package:flutter_consulting_platform/screens/profile/components/add_specialize/add_specialize_screen.dart';
+import 'package:flutter_consulting_platform/screens/search/search.dart';
 import 'package:get/get.dart';
 
 import '/core/dependencies/bindings.dart';
@@ -32,5 +34,15 @@ List<GetPage> pages = [
     name: '/dashboard',
     page: () => const DashboardScreen(),
     binding: DashboardBindings(),
+  ),
+  // GetPage(
+  //   name: '/search',
+  //   page: () => const SearchScreen(),
+  //   binding: DashboardBindings(),
+  // ),
+  GetPage(
+    name: '/add_specialize',
+    page: () => const AddSpecializeScreen(),
+    binding: AddSpecializeBinding(),
   ),
 ];

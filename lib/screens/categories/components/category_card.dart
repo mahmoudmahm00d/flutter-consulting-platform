@@ -10,33 +10,38 @@ import '../../shared/text.dart';
 class CategoryCard extends StatelessWidget {
   final String name;
   final String? imageUrl;
-  const CategoryCard({super.key, required this.name, this.imageUrl});
+  final void Function()? onTap;
+  const CategoryCard(
+      {super.key, required this.name, this.imageUrl, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 250,
-      width: 200,
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: CustomCachedNetworkImage(
-              imageUrl: imageUrl,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 250,
+        width: 200,
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          children: [
+            AspectRatio(
+              aspectRatio: 1,
+              child: CustomCachedNetworkImage(
+                imageUrl: imageUrl,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ApplicationText(
-              text: name,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ApplicationText(
+                text: name,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
